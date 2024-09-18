@@ -36,16 +36,37 @@ class UserController extends Controller
         // UserModel::create($data);
 
         //Jobsheet 4 Praktikum 1 Langkah 4
-        $data
-            = [
-                'level_id' => 2,
-                'username' => 'manajer_tiga',
-                'nama' => 'Manager 3',
-                'password' => Hash::make('12345')
-            ];
-        UserModel::create($data);
-        // mencoba mengakses model UserModel
-        $user = UserModel::all(); // Mengambil semua data dari tabel m_user
+        // $data
+        //     = [
+        //         'level_id' => 2,
+        //         'username' => 'manajer_tiga',
+        //         'nama' => 'Manager 3',
+        //         'password' => Hash::make('12345')
+        //     ];
+        // UserModel::create($data);
+
+        // // mencoba mengakses model UserModel
+        // $user = UserModel::all(); // Mengambil semua data dari tabel m_user
+        // return view('user', ['data' => $user]);
+
+        // Jobsheet 4 Praktikum 2 Langkah 3
+        // $user = UserModel::find(1); // Mengambil semua data dari tabel m_user
+        // return view('user', ['data' => $user]);
+
+        // Jobsheet 4 Praktikum 2 Langkah 5
+        // $user = UserModel::where('level_id', 1)->first();
+        // return view('user', ['data' => $user]);
+
+        // Jobsheet 4 Praktikum 2 Langkah 5
+        // $user = UserModel::findor(1, ['username', 'nama'], function () {
+        //     abort(404);
+        // });
+        // return view('user', ['data' => $user]);
+
+        // Jobsheet 4 Praktikum 2 Langkah 10
+        $user = UserModel::findor(20, ['username', 'nama'], function () {
+            abort(404);
+        });
         return view('user', ['data' => $user]);
     }
 }
