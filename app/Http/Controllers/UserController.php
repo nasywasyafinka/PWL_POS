@@ -49,24 +49,36 @@ class UserController extends Controller
         // $user = UserModel::all(); // Mengambil semua data dari tabel m_user
         // return view('user', ['data' => $user]);
 
-        // Jobsheet 4 Praktikum 2 Langkah 3
+        // Jobsheet 4 Praktikum 2.1 Langkah 3
         // $user = UserModel::find(1); // Mengambil semua data dari tabel m_user
         // return view('user', ['data' => $user]);
 
-        // Jobsheet 4 Praktikum 2 Langkah 5
+        // Jobsheet 4 Praktikum 2.1 Langkah 5
         // $user = UserModel::where('level_id', 1)->first();
         // return view('user', ['data' => $user]);
 
-        // Jobsheet 4 Praktikum 2 Langkah 5
+        // Jobsheet 4 Praktikum 2.1 Langkah 5
         // $user = UserModel::findor(1, ['username', 'nama'], function () {
         //     abort(404);
         // });
         // return view('user', ['data' => $user]);
 
-        // Jobsheet 4 Praktikum 2 Langkah 10
-        $user = UserModel::findor(20, ['username', 'nama'], function () {
-            abort(404);
-        });
+        // Jobsheet 4 Praktikum 2.1 Langkah 10
+        // $user = UserModel::findor(20, ['username', 'nama'], function () {
+        //     abort(404);
+        // });
+        // return view('user', ['data' => $user]);
+
+        // Jobsheet 4 Praktikum 2.2 Langkah 1
+        // $user = UserModel::findOrFail(1);
+        // return view('user', ['data' => $user]);
+
+        // Jobsheet 4 Praktikum 2.2 Langkah 3
+        $user = UserModel::where('username', 'manager9')->first0rFail();
         return view('user', ['data' => $user]);
+
+
+
+
     }
 }
