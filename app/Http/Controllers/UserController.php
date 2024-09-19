@@ -74,10 +74,59 @@ class UserController extends Controller
         // return view('user', ['data' => $user]);
 
         // Jobsheet 4 Praktikum 2.2 Langkah 3
-        $user = UserModel::where('username', 'manager9')->first0rFail();
+        // $user = UserModel::where('username', 'manager9')->first0rFail();
+        // return view('user', ['data' => $user]);
+
+
+        //Jobsheet 4 Praktikum 2.3 Langkah 3
+        // Menghitung jumlah pengguna dengan level_id = 2
+        // $userCount = UserModel::where('level_id', 2)->count();
+        // return view('user', ['userCount' => $userCount]);
+
+
+        //Jobsheet 4 Praktikum 2.4 Langkah 3
+        // $user = UserModel::firstOrCreate(
+        //     [
+        //         'username' => 'manager22',
+        //         'nama' => 'Manager Dua Dua',
+        //         'password' => Hash::make('12345'),
+        //         'level_id' => 2
+        //     ],
+        // );
+        // return view('user', ['data' => $user]);
+
+        //Jobsheet 4 Praktikum 2.4 Langkah 6
+        // $user = UserModel::firstOrNew(
+        //     [
+        //         'username' => 'manager',
+        //         'nama' => 'Manager',
+        //     ],
+        // );
+        // return view('user', ['data' => $user]);
+
+        //Jobsheet 4 Praktikum 2.4 Langkah 8
+        // $user = UserModel::firstOrNew(
+        //     [
+        //         'username' => 'manager33',
+        //         'nama' => 'Manager Tiga Tiga',
+        //         'password' => Hash::make('12345'),
+        //         'level_id' => 2
+        //     ],
+        // );
+        // return view('user', ['data' => $user]);
+
+
+        //Jobsheet 4 Praktikum 2.4 Langkah 10
+        $user = UserModel::firstOrNew(
+            [
+                'username' => 'manager33',
+                'nama' => 'Manager Tiga Tiga',
+                'password' => Hash::make('12345'),
+                'level_id' => 2
+            ],
+        );
+        $user ->save();
         return view('user', ['data' => $user]);
-
-
 
 
     }
