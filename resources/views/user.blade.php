@@ -105,7 +105,6 @@
             <td>{{ $data->nama }}</td>
             <td>{{ $data->level_id }}</td>
         </tr>
-    </table>
-</body>
-
+        </table>
+    </body>
 </html>

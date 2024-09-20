@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
+    // public function index()
+    // {
         // Menambahkan data user dengan Eloquent Model
         // $data = [
         //     'username' => 'custmer-1',
@@ -149,6 +149,7 @@ class UserController extends Controller
         // $user->isClean(); // true
         // dd($user->isDirty());
 
+        
         //Jobsheet 4 Praktikum 2.5 Langkah 3
         // $user = UserModel::create([
         //     'username' => 'manager 11',
@@ -165,5 +166,61 @@ class UserController extends Controller
         // dd($user->wasChanged(['nama', 'username'])); // true
 
 
+        
+
+    // }
+
+
+
+
+
+    //Jobsheet 4 Praktikum 2.6 Langkah 1
+    public function index() {
+        $user = UserModel::all();
+        return view ('user', ['data' => $user]);
     }
+
+    //Jobsheet 4 Praktikum 2.6 Langkah 6
+    public function tambah() {
+        return view ('user_tambah');
+    }
+
+    //Jobsheet 4 Praktikum 2.6 Langkah 9
+    public function tambah_simpan(Request $request) {
+        UserModel::create ([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make($request->password),
+            'level_id' => $request->level_id
+        ]);
+        return redirect('/user');
+    }
+
+    //Jobsheet 4 Praktikum 2.6 Langkah 13
+    public function ubah ($id) {
+        $user = UserModel::find($id);
+        return view ('user_ubah', ['data' => $user]);
+    }
+
+    //Jobsheet 4 Praktikum 2.6 Langkah 13
+    public function ubah_simpan($id, Request $request) {
+        $user = UserModel::find($id);
+        $user->username = $request->username;
+        $user->nama = $request->nama;
+        $user->password = Hash::make($request->password);
+        $user->level_id = $request->level_id;
+        
+        $user->save();
+        
+        return redirect('/user');
+    }
+
+    //Jobsheet 4 Praktikum 2.6 Langkah 19
+    public function hapus($id) {
+        $user = UserModel::find($id);
+        $user->delete();
+       
+        return redirect('/user');
+    } 
+
 }
