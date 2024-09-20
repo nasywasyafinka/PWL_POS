@@ -25,6 +25,8 @@ class UserController extends Controller
         // ];
         // UserModel::where('level_id', '4')->update($data); // Mengupdate data user
 
+
+
         //Jobsheet 4 Praktikum 1 Langkah 2
         // $data
         //     = [
@@ -34,6 +36,7 @@ class UserController extends Controller
         //         'password' => Hash::make('12345')
         //     ];
         // UserModel::create($data);
+
 
         //Jobsheet 4 Praktikum 1 Langkah 4
         // $data
@@ -49,13 +52,16 @@ class UserController extends Controller
         // $user = UserModel::all(); // Mengambil semua data dari tabel m_user
         // return view('user', ['data' => $user]);
 
+
         // Jobsheet 4 Praktikum 2.1 Langkah 3
         // $user = UserModel::find(1); // Mengambil semua data dari tabel m_user
         // return view('user', ['data' => $user]);
 
+
         // Jobsheet 4 Praktikum 2.1 Langkah 5
         // $user = UserModel::where('level_id', 1)->first();
         // return view('user', ['data' => $user]);
+
 
         // Jobsheet 4 Praktikum 2.1 Langkah 5
         // $user = UserModel::findor(1, ['username', 'nama'], function () {
@@ -63,15 +69,18 @@ class UserController extends Controller
         // });
         // return view('user', ['data' => $user]);
 
+
         // Jobsheet 4 Praktikum 2.1 Langkah 10
         // $user = UserModel::findor(20, ['username', 'nama'], function () {
         //     abort(404);
         // });
         // return view('user', ['data' => $user]);
 
+
         // Jobsheet 4 Praktikum 2.2 Langkah 1
         // $user = UserModel::findOrFail(1);
         // return view('user', ['data' => $user]);
+
 
         // Jobsheet 4 Praktikum 2.2 Langkah 3
         // $user = UserModel::where('username', 'manager9')->first0rFail();
@@ -82,6 +91,7 @@ class UserController extends Controller
         // Menghitung jumlah pengguna dengan level_id = 2
         // $userCount = UserModel::where('level_id', 2)->count();
         // return view('user', ['userCount' => $userCount]);
+
 
 
         //Jobsheet 4 Praktikum 2.4 Langkah 3
@@ -95,6 +105,7 @@ class UserController extends Controller
         // );
         // return view('user', ['data' => $user]);
 
+
         //Jobsheet 4 Praktikum 2.4 Langkah 6
         // $user = UserModel::firstOrNew(
         //     [
@@ -103,6 +114,7 @@ class UserController extends Controller
         //     ],
         // );
         // return view('user', ['data' => $user]);
+
 
         //Jobsheet 4 Praktikum 2.4 Langkah 8
         // $user = UserModel::firstOrNew(
@@ -128,6 +140,8 @@ class UserController extends Controller
         // $user ->save();
         // return view('user', ['data' => $user]);
 
+
+
         //Jobsheet 4 Praktikum 2.5 Langkah 1
         // $user = UserModel::create([
         //     'username' => 'manager55',
@@ -149,7 +163,7 @@ class UserController extends Controller
         // $user->isClean(); // true
         // dd($user->isDirty());
 
-        
+
         //Jobsheet 4 Praktikum 2.5 Langkah 3
         // $user = UserModel::create([
         //     'username' => 'manager 11',
@@ -165,12 +179,7 @@ class UserController extends Controller
         // $user->wasChanged('nama'); // false
         // dd($user->wasChanged(['nama', 'username'])); // true
 
-
-        
-
     // }
-
-
 
 
 
@@ -223,4 +232,5 @@ class UserController extends Controller
         return redirect('/user');
     } 
 
+    
 }
