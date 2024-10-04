@@ -22,11 +22,8 @@ class UserController extends Controller
     
         $activeMenu = 'user'; //set menu yang sedang aktif
 
-        // $level = LevelModel::all(); //ambil data level unttuk filter level
-        $level = LevelModel::all(); //Jobsheet 5 praktikum 4
-
-        // return view('user.index',['breadcrumb'=>$breadcrumb, 'page' => $page, 'level' => $level,'activeMenu'=>$activeMenu]);
-        //Jobsheet 5 praktikum 4
+        $level = LevelModel::all(); //ambil data level unttuk filter level
+    
         return view('user.index',['breadcrumb'=>$breadcrumb, 'page' => $page, 'level' => $level,'activeMenu'=>$activeMenu]);
     }
     
@@ -89,20 +86,20 @@ class UserController extends Controller
         ]);
         return redirect('/user') -> with('success', 'Data user berhasil disimpan');
     }
-    //jobsheet 5 praktikum 3 
+    
     //Menampilkan detail user
-    // public function show(String $id){
-    //     $user = UserModel::with('level') -> find($id);
-    //     $breadcrumb = (object)[
-    //         'title' => 'Detail User',
-    //         'list' => ['Home', 'User', 'Detail']
-    //     ];
-    //     $page = (object)[
-    //         'title' => 'Detail user'
-    //     ];
-    //     $activeMenu = 'user'; //set menu yang sedang aktif
-    //     return view('user.show', ['breadcrumb' => $breadcrumb, 'page'=>$page, 'user'=>$user, 'activeMenu'=>$activeMenu]);
-    // }
+    public function show(String $id){
+        $user = UserModel::with('level') -> find($id);
+        $breadcrumb = (object)[
+            'title' => 'Detail User',
+            'list' => ['Home', 'User', 'Detail']
+        ];
+        $page = (object)[
+            'title' => 'Detail user'
+        ];
+        $activeMenu = 'user'; //set menu yang sedang aktif
+        return view('user.show', ['breadcrumb' => $breadcrumb, 'page'=>$page, 'user'=>$user, 'activeMenu'=>$activeMenu]);
+    }
 
     //Menampilkan halaman form edit user
     public function edit(string $id){
@@ -136,7 +133,7 @@ class UserController extends Controller
         return redirect('/user')->with('success' . "data user berhasil diubah");
     }
 
-    //Menghapus data user
+    //Mengapus data user
     public function destroy(string $id)
     {
         $check = UserModel::find($id);
@@ -150,21 +147,4 @@ class UserController extends Controller
             return redirect('/user')->with('error','Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
-
-    //Menampilkan detail user
-    public function show(String $id){
-        $user = UserModel::with('level') -> find($id);
-        $breadcrumb = (object)[
-            'title' => 'Detail User',
-            'list' => ['Home', 'User', 'Detail']
-        ];
-        $page = (object)[
-            'title' => 'Detail user'
-        ];
-        $activeMenu = 'user'; //set menu yang sedang aktif
-        return view('user.show', ['breadcrumb' => $breadcrumb, 'page'=>$page, 'user'=>$user, 'activeMenu'=>$activeMenu]);
-    }
-
-    
-
 }

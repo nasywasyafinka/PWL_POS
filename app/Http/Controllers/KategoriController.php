@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\KategoriModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class KategoriController extends Controller
 {
@@ -28,4 +29,6 @@ class KategoriController extends Controller
         $data = DB::table('m_kategori') -> get();
         return view('kategori', ['data' => $data]);
     }
+
+    
 }
