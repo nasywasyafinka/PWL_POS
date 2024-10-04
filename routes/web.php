@@ -52,6 +52,8 @@ Route::group(['prefix' => 'user'], function(){
     Route::post('/list', [UserController::class, 'list']);  //data user (json)
     Route::get('/create', [UserController::class, 'create']); //form tambah user
     Route::post('/', [UserController::class, 'store']); //data user baru
+    Route::get('/create_ajax', [UserController::class, 'create_ajax']); // Menampilkan halaman form tambah user Ajax
+    Route::post('/ajax', [UserController::class, 'store_ajax']); // Menampilkan data user baru Ajax
     Route::get('/{id}', [UserController::class, 'show']); //detail user
     Route::get('/{id}/edit', [UserController::class, 'edit']); //form edit
     Route::put('/{id}', [UserController::class, 'update']); // simpan perubahan data
@@ -101,3 +103,4 @@ Route::group(['prefix' => 'barang'], function(){
     Route::put('/{id}', [BarangController::class, 'update']); // simpan perubahan data
     Route::delete('/{id}', [BarangController::class, 'destroy']); //hapus data barang
 });
+
