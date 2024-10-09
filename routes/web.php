@@ -45,9 +45,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', [WelcomeController::class,'index']);
+Route::get('/', [WelcomeController::class, 'index']);
 
-Route::group(['prefix' => 'user'], function(){
+Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']); //halaman awal
     Route::post('/list', [UserController::class, 'list']);  //data user (json)
     Route::get('/create', [UserController::class, 'create']); //form tambah user
@@ -57,10 +57,12 @@ Route::group(['prefix' => 'user'], function(){
     Route::get('/{id}', [UserController::class, 'show']); //detail user
     Route::get('/{id}/edit', [UserController::class, 'edit']); //form edit
     Route::put('/{id}', [UserController::class, 'update']); // simpan perubahan data
+    Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']); // Menampilkan halaman form edit user Ajax
+    Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']); // Menyimpan perubahan data user Ajax
     Route::delete('/{id}', [UserController::class, 'destroy']); //hapus data user
 });
 
-Route::group(['prefix' => 'level'], function(){
+Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index']); //halaman awal
     Route::post('/list', [LevelController::class, 'list']);  //data level (json)
     Route::get('/create', [LevelController::class, 'create']); //form tambah level
@@ -71,7 +73,7 @@ Route::group(['prefix' => 'level'], function(){
     Route::delete('/{id}', [LevelController::class, 'destroy']); //hapus data level
 });
 
-Route::group(['prefix' => 'kategori'], function(){
+Route::group(['prefix' => 'kategori'], function () {
     Route::get('/', [KategoriController::class, 'index']); //halaman awal
     Route::post('/list', [KategoriController::class, 'list']);  //data kategori (json)
     Route::get('/create', [KategoriController::class, 'create']); //form tambah kategori
@@ -82,7 +84,7 @@ Route::group(['prefix' => 'kategori'], function(){
     Route::delete('/{id}', [KategoriController::class, 'destroy']); //hapus data kategori
 });
 
-Route::group(['prefix' => 'supplier'], function(){
+Route::group(['prefix' => 'supplier'], function () {
     Route::get('/', [SupplierController::class, 'index']); //halaman awal
     Route::post('/list', [SupplierController::class, 'list']);  //data supplier (json)
     Route::get('/create', [SupplierController::class, 'create']); //form tambah supplier
@@ -93,7 +95,7 @@ Route::group(['prefix' => 'supplier'], function(){
     Route::delete('/{id}', [SupplierController::class, 'destroy']); //hapus data supplier
 });
 
-Route::group(['prefix' => 'barang'], function(){
+Route::group(['prefix' => 'barang'], function () {
     Route::get('/', [BarangController::class, 'index']); //halaman awal
     Route::post('/list', [BarangController::class, 'list']);  //data barang (json)
     Route::get('/create', [BarangController::class, 'create']); //form tambah barang
@@ -103,4 +105,3 @@ Route::group(['prefix' => 'barang'], function(){
     Route::put('/{id}', [BarangController::class, 'update']); // simpan perubahan data
     Route::delete('/{id}', [BarangController::class, 'destroy']); //hapus data barang
 });
-
