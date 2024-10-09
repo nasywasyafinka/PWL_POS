@@ -1,4 +1,4 @@
-@empty($user)
+@empty($supplier)
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,52 +11,65 @@
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
                     Data yang anda cari tidak ditemukan
                 </div>
-                <a href="{{ url('/user') }}" class="btn btn-warning">Kembali</a>
+                <a href="{{ url('/supplier') }}" class="btn btn-warning">Kembali</a>
             </div>
         </div>
     </div>
 @else
-    <form action="{{ url('/user/' . $user->user_id . '/delete_ajax') }}" method="POST" id="form-delete">
+    <form action="{{ url('/supplier/' .$supplier->supplier_id. '/update_ajax') }}" method="POST" id="form-edit">
         @csrf
-        @method('DELETE')
+        @method('PUT')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Supplier</h5>
                     <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-warning">
-                        <h5><i class="icon fas fa-ban"></i> Konfirmasi !!!</h5>
-                        Apakah Anda ingin menghapus data seperti di bawah ini?
+                    <div class="form-group">
+                        <label>Kode</label>
+                        <input value="{{ $supplier->supplier_kode }}" type="text" name="supplier_kode" id="supplier_kode"
+                            class="form-control" required>
+                        <small id="error-supplier_kode" class="error-text form-text textdanger"></small>
                     </div>
-                    <table class="table table-sm table-bordered table-striped">
-                        <tr>
-                            <th class="text-right col-3">Level Pengguna :</th>
-                            <td class="col-9">{{ $user->level->level_nama }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-right col-3">Username :</th>
-                            <td class="col-9">{{ $user->username }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-right col-3">Nama :</th>
-                            <td class="col-9">{{ $user->nama }}</td>
-                        </tr>
-                    </table>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama" class="form-control"
+                            required>
+                        <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <input value="{{ $supplier->supplier_alamat }}" type="text" name="supplier_alamat" id="supplier_alamat" class="form-control"
+                            required>
+                        <small id="error-supplier_alamat" class="error-text form-text text-danger"></small>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btnwarning">Batal</button>
-                    <button type="submit" class="btn btn-primary">Ya, Hapus</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
     </form>
     <script>
         $(document).ready(function() {
-            $("#form-delete").validate({
-                rules: {},
+            $("#form-edit").validate({
+                rules: {
+                    supplier_kode: {
+                    required: true,
+                    maxlength: 10
+                },
+                supplier_nama: {
+                    required: true,
+                    maxlength: 100
+                },
+                supplier_alamat: {
+                    required: true,
+                    maxlength: 225
+                },
+                },
                 submitHandler: function(form) {
                     $.ajax({
                         url: form.action,
@@ -70,7 +83,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataUser.ajax.reload();
+                                dataSupplier.ajax.reload();
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {
