@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\LevelModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Validator;
-use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
+use Illuminate\Foundation\Auth\User as Autenticatable;
 
 class UserController extends Controller
 {
+    
+
     public function index()
     {
         $breadcrumb = (object) [
@@ -150,7 +154,8 @@ class UserController extends Controller
         return view('user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
-    public function show_ajax(string $id) {
+    public function show_ajax(string $id)
+    {
         $user = UserModel::find($id);
         return view('user.show_ajax', ['user' => $user]);
     }
@@ -212,7 +217,7 @@ class UserController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             $rules = [
                 'level_id' => 'required|integer',
-                'username' => 'required|max:20|unique:m_user,username,' .$id. ',user_id',
+                'username' => 'required|max:20|unique:m_user,username,' . $id . ',user_id',
                 'nama' => 'required|max:100',
                 'password' => 'nullable|min:6|max:20'
             ];
@@ -268,17 +273,19 @@ class UserController extends Controller
     }
 
     // Menampilkan halaman confirm hapus
-    public function confirm_ajax(string $id) {
+    public function confirm_ajax(string $id)
+    {
         $user = UserModel::find($id);
         return view('user.confirm_ajax', ['user' => $user]);
     }
 
     // Menghapus data user dengan AJAX
-    public function delete_ajax(Request $request, $id) {
+    public function delete_ajax(Request $request, $id)
+    {
         //cek apakah request dari ajax
-        if($request->ajax() || $request->wantsJson()) {
+        if ($request->ajax() || $request->wantsJson()) {
             $user = UserModel::find($id);
-            if($user) {
+            if ($user) {
                 $user->delete();
                 return response()->json([
                     'status' => true,
