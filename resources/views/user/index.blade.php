@@ -24,7 +24,7 @@
                         <select class="form-control" name="level_id" id="level_id" required>
                             <option value="">- Semua -</option>
                             @foreach ($level as $item )
-                            <option value="{{$item->level_id}}">{{ $item->level_nama}}</option>
+                            <option value="{{$item->level_id}}">{{ $item->lavel_name}}</option>
                             @endforeach
                         </select>
                         <small class="form-text text-muted">Level Pengguna</small>
@@ -85,7 +85,7 @@
                     searchable: true
                 }, {
                     // mengambil data level hasil dari ORM berelasi 
-                    data: "level.level_nama",
+                    data: "level.level_name",
                     className: "",
                     orderable: false,
                     searchable: false
