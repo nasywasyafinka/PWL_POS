@@ -7,6 +7,8 @@ use App\Models\UserModel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller {
@@ -387,7 +389,8 @@ class UserController extends Controller {
                 'level_id'   => 'required|integer',
                 'username'   => 'required|string|min:3|unique:m_user,username',
                 'nama'       => 'required|string|max:100',
-                'password'   => 'required|min:6'
+                'password' => 'required:min:6',
+                'file_profil' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -399,6 +402,19 @@ class UserController extends Controller {
                     'msgField' => $validator->errors(), // pesan error validasi
                 ]);
             }
+
+
+            // Mendefinisikan nama file
+            $fileExtension = $request->file('file_profil')->getClientOriginalExtension();
+            $fileName = 'profile_' . Auth::user()->user_id . '.' . $fileExtension;
+            // Cek untuk foto profil ada atau dihapus 
+            $oldFile = 'profile_pictures/' . $fileName;
+            if (Storage::disk('public')->exists($oldFile)) {
+                Storage::disk('public')->delete($oldFile);
+            }
+            // Store the new file with the user id as the file name
+            $path = $request->file('file_profil')->storeAs('profile_pictures', $fileName, 'public');
+            session(['profile_img_path' => $path]);
 
             UserModel::create($request->all());
             return response()->json([

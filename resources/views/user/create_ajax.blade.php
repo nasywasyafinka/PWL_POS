@@ -4,16 +4,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label>Level Pengguna</label>
                     <select name="level_id" id="level_id" class="form-control" required>
                         <option value="">- Pilih Level -</option>
-                        @foreach($level as $l)
+                        @foreach ($level as $l)
                             <option value="{{ $l->level_id }}">{{ $l->level_nama }}</option>
                         @endforeach
                     </select>
@@ -26,8 +25,13 @@
                 </div>
                 <div class="form-group">
                     <label>Nama</label>
-                    <input value="" type="text" name="nama" id="nama" class="form-control" required>
-                    <small id="error-nama" class="error-text form-text text-danger"></small>
+                    <input value="" type="text" name="name" id="name" class="form-control" required>
+                    <small id="error-name" class="error-text form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Foto Profil</label>
+                    <input type="file" name="file_profil" id="file_profil" class="form-control" required>
+                    <small id="error-file_profil" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
@@ -42,21 +46,44 @@
         </div>
     </div>
 </form>
-
 <script>
     $(document).ready(function() {
         $("#form-tambah").validate({
             rules: {
-                level_id: { required: true, number: true },
-                username: { required: true, minlength: 3, maxlength: 20 },
-                nama: { required: true, minlength: 3, maxlength: 100 },
-                password: { required: true, minlength: 6, maxlength: 20 }
+                level_id: {
+                    required: true,
+                    number: true
+                },
+                username: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 20
+                },
+                name: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 20
+                },
+                file_profil: {
+                    required: true,
+                    extension: "jpg|jpeg|png|ico|bmp"
+                }
             },
             submitHandler: function(form) {
+                var formData = new FormData(
+                    form); // Jadikan form ke FormData untuk menghandle file 
+
                 $.ajax({
                     url: form.action,
                     type: form.method,
-                    data: $(form).serialize(),
+                    data: formData,
+                    processData: false, // setting processData dan contentType ke false, untuk menghandle file 
+                    contentType: false,
                     success: function(response) {
                         if (response.status) {
                             $('#myModal').modal('hide');
