@@ -3,18 +3,17 @@
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Level</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data level</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Kode</label>
+                    <label>Level Kode</label>
                     <input value="" type="text" name="level_kode" id="level_kode" class="form-control" required>
                     <small id="error-level_kode" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Nama</label>
+                    <label>Nama Level</label>
                     <input value="" type="text" name="level_nama" id="level_nama" class="form-control" required>
                     <small id="error-level_nama" class="error-text form-text text-danger"></small>
                 </div>
@@ -33,7 +32,7 @@
                 level_kode: {
                     required: true,
                     minlength: 3,
-                    maxlength: 3
+                    maxlength: 20
                 },
                 level_nama: {
                     required: true,

@@ -3,21 +3,22 @@
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Kategori</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                <div class="form-group">
-                    <label>Kode</label>
-                    <input value="" type="text" name="kategori_kode" id="kategori_kode" class="form-control" required>
+                    <label>kategori Kode</label>
+                    <input value="" type="text" name="kategori_kode" id="kategori_kode" class="form-control"
+                        required>
                     <small id="error-kategori_kode" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Nama</label>
-                    <input value="" type="text" name="kategori_nama" id="kategori_nama" class="form-control" required>
-                    <small id="error-nama" class="error-text form-text text-danger"></small>
+                    <label>kategori Nama</label>
+                    <input value="" type="text" name="kategori_nama" id="kategori_nama" class="form-control"
+                        required>
+                    <small id="error-kategori_nama" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
@@ -34,11 +35,10 @@
                 kategori_kode: {
                     required: true,
                     minlength: 3,
-                    maxlength: 3
+                    maxlength: 10
                 },
                 kategori_nama: {
                     required: true,
-                    minlength: 3,
                     maxlength: 100
                 },
             },

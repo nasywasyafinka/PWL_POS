@@ -1,9 +1,10 @@
+
 @empty($kategori)
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
-                <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
+                <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
                         aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -22,8 +23,8 @@
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Kategori</h5>
-                    <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Lavel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -33,17 +34,17 @@
                     </div>
                     <table class="table table-sm table-bordered table-striped">
                         <tr>
-                            <th class="text-right col-3">Kode :</th>
+                            <th class="text-right col-3">kategori Kode :</th>
                             <td class="col-9">{{ $kategori->kategori_kode }}</td>
                         </tr>
                         <tr>
-                            <th class="text-right col-3">Nama :</th>
+                            <th class="text-right col-3">kategori Nama :</th>
                             <td class="col-9">{{ $kategori->kategori_nama }}</td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btnwarning">Batal</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
                     <button type="submit" class="btn btn-primary">Ya, Hapus</button>
                 </div>
             </div>

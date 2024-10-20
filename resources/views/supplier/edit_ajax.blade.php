@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
-                <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
+                <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
                         aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -16,33 +16,33 @@
         </div>
     </div>
 @else
-    <form action="{{ url('/supplier/' .$supplier->supplier_id. '/update_ajax') }}" method="POST" id="form-edit">
+    <form action="{{ url('/supplier/' . $supplier->supplier_id . '/update_ajax') }}" method="POST" id="form-edit">
         @csrf
         @method('PUT')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Data Supplier</h5>
-                    <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
+                    <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Kode</label>
-                        <input value="{{ $supplier->supplier_kode }}" type="text" name="supplier_kode" id="supplier_kode"
+                        <label>supplier Nama</label>
+                        <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama"
                             class="form-control" required>
-                        <small id="error-supplier_kode" class="error-text form-text textdanger"></small>
-                    </div>
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama" class="form-control"
-                            required>
                         <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
-                        <label>Alamat</label>
-                        <input value="{{ $supplier->supplier_alamat }}" type="text" name="supplier_alamat" id="supplier_alamat" class="form-control"
-                            required>
+                        <label>supplier Kode</label>
+                        <input value="{{ $supplier->supplier_kode }}" type="text" name="supplier_kode" id="name"
+                            class="form-control" required>
+                        <small id="error-supplier_kode" class="error-text form-text text-danger"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>supplier Alamat</label>
+                        <input value="{{ $supplier->supplier_alamat }}" type="text" name="supplier_alamat" id="name"
+                            class="form-control" required>
                         <small id="error-supplier_alamat" class="error-text form-text text-danger"></small>
                     </div>
                 </div>
@@ -58,17 +58,18 @@
             $("#form-edit").validate({
                 rules: {
                     supplier_kode: {
-                    required: true,
-                    maxlength: 10
-                },
-                supplier_nama: {
-                    required: true,
-                    maxlength: 100
-                },
-                supplier_alamat: {
-                    required: true,
-                    maxlength: 225
-                },
+                        required: true,
+                        minlength: 3,
+                        maxlength: 10
+                    },
+                    supplier_nama: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    supplier_alamat: {
+                        required: true,
+                        maxlength: 100
+                    },
                 },
                 submitHandler: function(form) {
                     $.ajax({
