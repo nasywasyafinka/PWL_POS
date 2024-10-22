@@ -276,12 +276,6 @@ class LevelController extends Controller
         return redirect('/');
     }
 
-    public function show_ajax(string $id)
-    {
-        $level = LevelModel::find($id);
-
-        return view('level.show_ajax', ['level' => $level]);
-    }
 
     public function import()
     {
@@ -337,6 +331,20 @@ class LevelController extends Controller
             }
         }
         return redirect('/level');
+    }
+
+    public function show_ajax(string $id)
+    {
+        $level = LevelModel::find($id);
+
+        if ($level) {
+            return view('level.show_ajax', ['level' => $level]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan'
+            ]);
+        }
     }
 
     public function export_excel()

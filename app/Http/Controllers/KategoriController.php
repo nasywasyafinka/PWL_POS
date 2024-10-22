@@ -267,7 +267,14 @@ class KategoriController extends Controller
     {
         $kategori = KategoriModel::find($id);
 
-        return view('kategori.show_ajax', ['kategori' => $kategori]);
+        if ($kategori) {
+            return view('kategori.show_ajax', ['kategori' => $kategori]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan'
+            ]);
+        }
     }
 
     public function import()

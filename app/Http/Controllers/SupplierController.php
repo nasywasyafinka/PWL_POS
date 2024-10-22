@@ -107,6 +107,7 @@ class SupplierController extends Controller
         return view('supplier.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'supplier' => $supplier, 'activeMenu' => $activeMenu]);
     }
 
+
     public function edit(string $id)
     {
         $supplier = SupplierModel::find($id);

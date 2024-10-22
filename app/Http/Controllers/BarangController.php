@@ -295,7 +295,14 @@ class BarangController extends Controller
     {
         $barang = BarangModel::find($id);
 
-        return view('barang.show_ajax', ['barang' => $barang]);
+        if ($barang) {
+            return view('barang.show_ajax', ['barang' => $barang]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan'
+            ]);
+        }
     }
 
     public function import()
