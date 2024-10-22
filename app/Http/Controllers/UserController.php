@@ -607,4 +607,9 @@ class UserController extends Controller
 
         return $pdf->stream('Data User ' . date('Y-m-d H:i:s') . '.pdf');
     }
+
+    // public function penjualan()
+    // {
+    //     return $this->belongsTo(PenjualanModel::class, 'penjualan_id', 'penjualan_id');
+    // }
 };
