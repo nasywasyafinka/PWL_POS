@@ -1,4 +1,60 @@
 <div class="sidebar">
+    <style>
+        .sidebar {
+            background-color: #003c5b; /* Navy blue background */
+            color: #ffffff; /* White text for contrast */
+            height: 100vh; /* Full height */
+            padding: 20px; /* Padding around sidebar */
+            font-family: 'Georgia', serif; /* Elegant font */
+        }
+
+        .sidebar .user-panel {
+            border-bottom: 2px solid #d5a65d; /* Gold divider line */
+            padding-bottom: 10px; /* Padding below user panel */
+        }
+
+        .sidebar .user-panel .image img {
+            border-radius: 50%; /* Circular image */
+            width: 60px; /* Width of the image */
+            height: 60px; /* Height of the image */
+        }
+
+        .sidebar .info a {
+            color: #d5a65d; /* Gold link color */
+            font-weight: bold; /* Bold font */
+            text-decoration: none; /* Remove underline */
+            font-size: 1.1rem; /* Slightly larger font */
+        }
+
+        .sidebar .form-inline {
+            margin-top: 20px; /* Margin above search form */
+        }
+
+        .sidebar .nav-link {
+            color: #f8f9fa; /* Light text for links */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .sidebar .nav-link:hover {
+            color: #d5a65d; /* Gold link color on hover */
+            background-color: #004e7c; /* Darker navy on hover */
+        }
+
+        .sidebar .nav-link.active {
+            color: #ffffff; /* Active link color */
+            background-color: #d5a65d; /* Gold background for active link */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        .sidebar .nav-header {
+            color: #d5a65d; /* Gold for headers */
+            font-size: 0.9rem; /* Slightly smaller font size */
+            text-transform: uppercase; /* Uppercase letters */
+            margin-top: 15px; /* Margin above header */
+            margin-bottom: 5px; /* Margin below header */
+        }
+    </style>
+
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
             <img @if (file_exists(public_path(
@@ -79,7 +135,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/barang') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }} ">
+                <a href="{{ url('/transaksi') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-cash-register"></i>
                     <p>Transaksi Penjualan</p>
                 </a>

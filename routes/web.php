@@ -63,10 +63,19 @@ Route::post('login', [AuthController::class, 'postlogin']);
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
-    //semua route yang perlu otentikasi
+    // Semua route yang perlu otentikasi
     Route::get('/', [WelcomeController::class, 'index']);
-    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile'); // Ensure this route remains the same
     Route::post('upload_foto', [ProfileController::class, 'upload_foto'])->name('upload.foto');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); // Edit profile
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Update profile
+
+
+// Route::middleware(['auth'])->group(function () {
+//     //semua route yang perlu otentikasi
+//     Route::get('/', [WelcomeController::class, 'index']);
+//     Route::get('/profile', [ProfileController::class, 'index']);
+//     Route::post('upload_foto', [ProfileController::class, 'upload_foto'])->name('upload.foto');
 
     //Semua route di grup ini harus punya role ADM (Administrator)
     Route::group(['prefix' => 'user', 'middleware' => 'authorize:ADM'], function () {

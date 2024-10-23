@@ -209,8 +209,9 @@
                                 <b>Tingkat Level</b> <span>{{ auth()->user()->level->level_nama }}</span>
                             </li>
                         </div>
-
+                        <a href="{{ route('profile.edit') }}" class="btn btn-primary mb-2"><b>Ubah Data</b></a>
                         <a href="{{ url('/') }}" class="btn btn-primary"><b>Kembali</b></a>
+                        
                     </div>
                 </div>
             </div>

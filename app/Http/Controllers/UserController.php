@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\PenjualanModel;
+
 
 class UserController extends Controller
 {
@@ -608,8 +610,8 @@ class UserController extends Controller
         return $pdf->stream('Data User ' . date('Y-m-d H:i:s') . '.pdf');
     }
 
-    // public function penjualan()
-    // {
-    //     return $this->belongsTo(PenjualanModel::class, 'penjualan_id', 'penjualan_id');
-    // }
+    public function penjualan()
+    {
+        return $this->belongsTo(PenjualanModel::class, 'penjualan_id', 'penjualan_id');
+    }
 };

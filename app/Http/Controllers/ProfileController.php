@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function index(){
+    public function index() {
         $breadcrumb = (object)[
             'title' => '',
             'list' => ['Home', 'Profile']
         ];
 
-        $activeMenu = 'profile';
+            $activeMenu = 'profile';
 
-        return view('profile', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
+        return view('profile.index', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]); // Update the view name here
     }
 
     public function upload_foto(Request $request){
@@ -47,8 +47,30 @@ class ProfileController extends Controller
         $file->storeAs($folderPath, $filename, 'public');
 
         // Lakukan sesuatu dengan file, misalnya simpan ke database
-        // auth()->user()->update(['profile_picture' => $filename]);
+        auth()->user()->update(['profile_picture' => $filename]);
 
         return back()->with('success', 'Foto berhasil diupload.');
     }
+    public function edit() {
+        return view('profile.edit'); // Return the edit view
+    }
+    
+    public function update(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+    
+        $user = auth()->user();
+        $user->nama = $request->name;
+    
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+    
+        $user->save();
+    
+        return redirect()->route('profile.index')->with('success', 'Data berhasil diperbarui.');
+    }
+    
 }
