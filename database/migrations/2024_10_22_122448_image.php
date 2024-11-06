@@ -10,13 +10,13 @@ return new class extends Migration
     public function up()
     {
         Schema::table('m_user', function (Blueprint $table) {
-            $table->blob('image')->nullable(); // Add 'image' column
+            // $table->blob('image')->nullable(); // Add 'image' column
         });
     }
     public function down()
     {
         Schema::table('m_user', function (Blueprint $table) {
-            $table->dropColumn('image'); // Remove 'image' column if rolled back
+            // $table->dropColumn('image'); // Remove 'image' column if rolled back
         });
     }
 };
