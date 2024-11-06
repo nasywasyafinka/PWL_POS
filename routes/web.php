@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Api\RegisterController;
 use App\Models\KategoriModel;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,8 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 // Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 
+//js 10 bagian 1
+// Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
 
 // Js 7 | Auth
 Route::pattern('id', '[0-9]+'); //ketika ada parameter {id}, maka harus berupa angka
@@ -71,11 +74,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Update profile
 
 
-// Route::middleware(['auth'])->group(function () {
-//     //semua route yang perlu otentikasi
-//     Route::get('/', [WelcomeController::class, 'index']);
-//     Route::get('/profile', [ProfileController::class, 'index']);
-//     Route::post('upload_foto', [ProfileController::class, 'upload_foto'])->name('upload.foto');
+    // Route::middleware(['auth'])->group(function () {
+    //     //semua route yang perlu otentikasi
+    //     Route::get('/', [WelcomeController::class, 'index']);
+    //     Route::get('/profile', [ProfileController::class, 'index']);
+    //     Route::post('upload_foto', [ProfileController::class, 'upload_foto'])->name('upload.foto');
 
     //Semua route di grup ini harus punya role ADM (Administrator)
     Route::group(['prefix' => 'user', 'middleware' => 'authorize:ADM'], function () {
@@ -113,7 +116,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']);    //menghapus data level AJAX
         Route::get('/import', [LevelController::class, 'import']); // ajax form upload excel
         Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // ajax import excel
-        Route::get('/export_excel', [LevelController::class, 'export_excel']); // ajax import excel
+        Route::get('/export_excel', [LevelController::class, 'export_excel']); // ajax export excel
         Route::get('/export_pdf', [LevelController::class, 'export_pdf']); // ajax export pdf
     });
 
